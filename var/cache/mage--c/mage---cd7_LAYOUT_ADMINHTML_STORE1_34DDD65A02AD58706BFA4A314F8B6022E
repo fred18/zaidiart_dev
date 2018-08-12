@@ -1,0 +1,53 @@
+a:4:{s:4:"hash";s:0:"";s:5:"mtime";i:1530699629;s:6:"expire";i:9999999999;s:4:"tags";s:70:"cd7_ADMINHTML_USER_ROLE_ROLEGRID,cd7_LAYOUT_GENERAL_CACHE_TAG,cd7_MAGE";}
+<body>
+   <block class="Magento\Backend\Block\Admin\Formkey" name="formkey" as="formkey" template="Magento_Backend::admin/formkey.phtml"/>
+</body>
+<body>
+   <referenceBlock name="adminhtml.user.role.container">
+      <block class="Magento\Backend\Block\Widget\Grid" name="adminhtml.role.grid" as="grid">
+         <arguments>
+            <argument name="id" xsi:type="string">roleGrid</argument>
+            <argument name="dataSource" xsi:type="object">Magento\Authorization\Model\ResourceModel\Role\Grid\Collection</argument>
+            <argument name="save_parameters_in_session" xsi:type="string">1</argument>
+            <argument name="default_sort" xsi:type="string">role_id</argument>
+            <argument name="default_dir" xsi:type="string">asc</argument>
+            <argument name="use_ajax" xsi:type="string">1</argument>
+            <argument name="grid_url" path="*/*/roleGrid" xsi:type="url">
+               <param name="_current">1</param>
+            </argument>
+         </arguments>
+         <block class="Magento\Backend\Block\Widget\Grid\ColumnSet" as="grid.columnSet" name="permission.role.grid.columnSet">
+            <arguments>
+               <argument name="id" xsi:type="string">roleGrid</argument>
+               <argument name="rowUrl" xsi:type="array">
+                  <item name="path" xsi:type="string">*/*/editrole</item>
+                  <item name="extraParamsTemplate" xsi:type="array">
+                     <item name="rid" xsi:type="string">getId</item>
+                  </item>
+               </argument>
+            </arguments>
+            <block class="Magento\Backend\Block\Widget\Grid\Column" name="permission.role.grid.columnSet.role_id" as="role_id">
+               <arguments>
+                  <argument name="header" translate="true" xsi:type="string">ID</argument>
+                  <argument name="index" xsi:type="string">role_id</argument>
+                  <argument name="column_css_class" xsi:type="string">col-id</argument>
+                  <argument name="header_css_class" xsi:type="string">col-id</argument>
+               </arguments>
+            </block>
+            <block class="Magento\Backend\Block\Widget\Grid\Column" name="permission.role.grid.columnSet.role_name" as="role_name">
+               <arguments>
+                  <argument name="header" translate="true" xsi:type="string">Role</argument>
+                  <argument name="type" xsi:type="string">text</argument>
+                  <argument name="escape" xsi:type="string">1</argument>
+                  <argument name="index" xsi:type="string">role_name</argument>
+               </arguments>
+            </block>
+         </block>
+      </block>
+   </referenceBlock>
+</body>
+<update handle="formkey"/>
+<update handle="adminhtml_user_role_grid_block"/>
+<container name="root">
+   <block class="Magento\Backend\Block\Widget\Grid\Container" name="adminhtml.user.role.container" template="Magento_Backend::widget/grid/container/empty.phtml"/>
+</container>
